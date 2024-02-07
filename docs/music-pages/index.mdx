@@ -135,6 +135,13 @@ import {c_maj, d_maj} from './scales.js'
 
 Here's an example of a music player component with Play/Stop button, enclosing the AbcNotation component:
 
+```jsx
 <AbcPlayer abcString={c_maj} bpm={90} />
 (Set to 90 bpm)
 <AbcPlayer abcString={d_maj} />
+```
+
+<AbcPlayer abcString={c_maj} bpm={90} />
+(Set to 90 bpm)
+<AbcPlayer abcString={d_maj} />
+(Uses the abcjs default 180 bpm or whatever is specified in the abc string)
