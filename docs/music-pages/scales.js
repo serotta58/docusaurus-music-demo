@@ -1,4 +1,3 @@
-// scales.js
 // NOTE: It is important that the multiline ABC text start at the beginning of each line.
 
 export const c_maj = `
