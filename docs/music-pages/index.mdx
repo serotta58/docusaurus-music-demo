@@ -1,0 +1,140 @@
+---
+title: ABC Music Rendering Test
+---
+
+import AbcNotation from '@site/src/components/abc-notation'
+import AbcPlayer from '@site/src/components/abc-simple-player'
+
+Wrap multiline abc code with curly braces and back quotes.  This will prevent
+any problems with the single and double quotes and curly braces that can be
+embedded in ABC strings.  The options prop will take standard renderAbc options.
+Note that the `options` prop value requires double curly braces, one to escape
+the JSX code and the other to create the object type required by `options`.
+
+Multiline ABC text should be left justified since any leading spaces will
+confuse the parser.
+
+For example:
+
+```jsx
+<AbcNotation options={{foregroundColor:"MediumBlue", responsive:"resize"}}
+  abcString={`
+X: 1
+T: Cooley's
+M: 4/4
+L: 1/8
+K: Emin
+|:D2|"Em"EB{c}BA B2 EB|~B2 AB dBAG|"D"FDAD BDAD|FDAD dAFD|
+"Em"EBBA B2 EB|B2 AB defg|"D"afe^c dBAF|"Em"DEFD E2:|
+|:gf|"Em"eB B2 efge|eB B2 gedB|"D"A2 FA DAFA|A2 FA defg|
+"Em"eB B2 eBgB|eB B2 defg|"D"afe^c dBAF|"Em"DEFD E2:|
+  `}
+/>
+```
+
+<AbcNotation options={{foregroundColor:"MediumBlue", responsive:"resize"}}
+  abcString={`
+X: 1
+T: Cooley's
+M: 4/4
+L: 1/8
+K: Emin
+|:D2|"Em"EB{c}BA B2 EB|~B2 AB dBAG|"D"FDAD BDAD|FDAD dAFD|
+"Em"EBBA B2 EB|B2 AB defg|"D"afe^c dBAF|"Em"DEFD E2:|
+|:gf|"Em"eB B2 efge|eB B2 gedB|"D"A2 FA DAFA|A2 FA defg|
+"Em"eB B2 eBgB|eB B2 defg|"D"afe^c dBAF|"Em"DEFD E2:|
+  `}
+/>
+
+---
+
+The curly braces and back quotes will also allow the use of newline characters within the ABC string:
+```jsx
+<AbcNotation abcString={`X:1\nT:Example 1\nK:C\nCDEF GABc|\n`} />
+```
+<AbcNotation abcString={`X:1\nT:Example 1\nK:C\nCDEF GABc|\n`} />
+
+And remember the visual transposition option:
+```jsx
+<AbcNotation abcString={`X:1\nT:Example 2\nK:C\nCDEF GABc|\n`} options={{visualTranspose: 2}} />
+```
+<AbcNotation abcString={`X:1\nT:Example 2\nK:C\nCDEF GABc|\n`} options={{visualTranspose: 2}} />
+
+---
+
+ABC string data JavaScript expressions can be entered in MDX by beginning the line with `export`:
+
+```jsx
+export const fscale = `X:1\nT:F Scale\nK:F\nFGAB cdef|\n`;
+
+<AbcNotation abcString={fscale} />
+```
+
+export const fscale = `X:1\nT:F Scale\nK:F\nFGAB cdef|\n`;
+
+<AbcNotation abcString={fscale} />
+
+Multiline text variable assignments work in MDX too as long as there are no blank lines.  This can be more readable:
+
+```jsx
+export const gscale = `
+X:1
+T:G Minor Scale
+K:Gm
+GABc defg|
+`;
+
+<AbcNotation abcString={gscale} />
+```
+
+export const gscale = `
+X:1
+T:G Minor Scale
+K:Gm
+GABc defg|
+`;
+
+<AbcNotation abcString={gscale} />
+
+---
+
+Importing (into JavaScript, JSX or MDX) may be useful as well, separating the ABC music strings from the display code:
+
+```js
+// scales.js
+// NOTE: It is important that the multiline ABC text start at the beginning of each line.
+
+export const c_maj = `
+X:1
+T:C Major
+K:C
+CDEF GABc|dcBA GFED|C4z4|
+`;
+
+export const d_maj = `
+X:1
+T:D Major
+K:D
+DEFG ABcd|edcB AGFE|D4z4|
+`;
+```
+
+```jsx
+import {c_maj, d_maj} from './scales.js'
+
+<AbcNotation abcString={c_maj} />
+<AbcNotation abcString={d_maj} />
+```
+
+import {c_maj, d_maj} from './scales.js'
+
+<AbcNotation abcString={c_maj} />
+<AbcNotation abcString={d_maj} />
+
+---
+
+Here's an example of a music player component with Play/Stop button, enclosing the AbcNotation component:
+
+<AbcPlayer abcString={c_maj} bpm={90} />
+(Set to 90 bpm)
+<AbcPlayer abcString={d_maj} />
