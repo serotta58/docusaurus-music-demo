@@ -6,6 +6,21 @@ It serves primarily as a demo and test site for React components that use the [a
 
 This demo uses an MDX file to demonstrate the usage of the React components.  This makes it very easy to embed music in a blog or documentation page with site generators that can process MDX (such as this Docusaurus example, and Gatsby with the [gatsby-plugin-mdx](https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/))  The examples can easily be used directly in React JSX code as well.
 
+## Example
+
+The `AbcPlayer` converts this ABC text:
+
+```txt
+X:1
+T:C Major
+K:C
+CDEF GABc|dcBA GFED|C4z4|
+```
+
+to this rendered and playable music:
+
+![C scale notation example](./static/img/C_scale.png)
+
 ## Files
 
 This example uses the following files to create the ABC Music Rendering Test page:
