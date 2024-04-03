@@ -125,7 +125,7 @@ import {c_maj, d_maj} from './scales.js'
 <AbcNotation abcString={d_maj} />
 ```
 
-import {c_maj, d_maj} from './scales.js'
+import {c_maj, d_maj, c_maj_encl} from './scales.js'
 
 <AbcNotation abcString={c_maj} />
 <AbcNotation abcString={d_maj} />
@@ -135,12 +135,17 @@ import {c_maj, d_maj} from './scales.js'
 Here's an example of a music player component with Play/Stop button, enclosing the AbcNotation component:
 
 ```jsx
-<AbcPlayer abcString={c_maj} bpm={90} />
-(Set to 90 bpm)
+<AbcPlayer abcString={c_maj} bpm={120} />
+(Set to 120 bpm)
 <AbcPlayer abcString={d_maj} />
 ```
 
-<AbcPlayer abcString={c_maj} bpm={90} />
-(Set to 90 bpm)
+<AbcPlayer abcString={c_maj} bpm={120} />
+(Set to 120 bpm)
 <AbcPlayer abcString={d_maj} />
-(Uses the abcjs default 180 bpm or whatever is specified in the abc string)
+
+## Scale with Enclosures
+
+<AbcPlayer abcString={c_maj_encl} bpm={90}/>
+
+Also play each group of 3 (enclosure plus target note) as two eighths and a quarter, or three eights and an eighth rest, etc.
